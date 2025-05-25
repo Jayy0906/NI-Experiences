@@ -51,7 +51,7 @@ const Breadcrumbs: React.FC = () => (
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem href="/romantic-maldives">
-          Romatic Maldives
+          Romantic Maldives
         </BreadcrumbItem>
       </div>
     </nav>

@@ -18,22 +18,22 @@ export default function Footer() {
 
         {/* Navigation */}
         <nav className="mt-6 flex flex-row flex-wrap items-center justify-center gap-x-6 gap-y-3 text-base font-normal">
-          <a className="hover:underline" href="#">
+          <a className="hover:underline" href="/">
             Home
           </a>
-          <a className="hover:underline" href="#">
+          <a className="hover:underline" href="/destinations">
             Destinations
           </a>
-          <a className="hover:underline" href="#">
+          <a className="hover:underline" href="/events">
             Events
           </a>
-          <a className="hover:underline" href="#">
+          <a className="hover:underline" href="/activities">
             Activities
           </a>
-          <a className="hover:underline" href="#">
+          <a className="hover:underline" href="/about-us">
             About Us
           </a>
-          <a className="hover:underline" href="#">
+          <a className="hover:underline" href="/contact-us">
             Contact Us
           </a>
         </nav>
@@ -58,13 +58,13 @@ export default function Footer() {
 
         {/* Copyright and Policy Links */}
         <div className="mt-6 flex flex-row items-center justify-between text-sm font-normal text-white gap-x-6 flex-wrap">
-          <div>All Rights Reserved</div>
+          <div><a className="hover:underline" href="/all-rights-reserved">All Rights Reserved</a></div>
           <div className="flex flex-row items-center gap-x-1">
-            <a className="hover:underline" href="#">
+            <a className="hover:underline" href="/privacy-policy">
               Privacy Policy
             </a>
             <span>-</span>
-            <a className="hover:underline" href="#">
+            <a className="hover:underline" href="/terms-of-use">
               Terms of Use
             </a>
           </div>

@@ -7,6 +7,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import Image from "next/image";
+import { useRouter } from "next/navigation"; 
 
 library.add(fas, far);
 
@@ -25,7 +26,7 @@ const StarRating = () => {
       } else if (width >= 640) {
         setStarSize({ height: "28px", width: "20px" });
       } else {
-        setStarSize({ height: "20px", width: "10px" });
+        setStarSize({ height: "23px", width: "10px" });
       }
     };
 
@@ -55,34 +56,33 @@ const StarRating = () => {
 const TripInfo = ({
   days,
   location,
-  isMobile,
+  isMobile, // You can actually remove this prop now
 }: {
   days: string;
   location: string;
-  isMobile: boolean;
+  isMobile: boolean; // Or keep it for other logic if needed
 }) => (
-  <div
-    className={`flex items-center gap-3 text-black-700 text-sm ${
-      isMobile ? "flex-nowrap" : "flex-wrap"
-    }`}
-  >
+  // CHANGE: Removed conditional flex-nowrap/flex-wrap. Default is flex-wrap.
+  <div className={`flex items-center gap-3 text-black-700 text-sm flex-wrap`}>
     <div
-      className={`flex items-center gap-2 lg:gap-6 md:gap-6 mr-6 mb-2 ${
-        isMobile ? "whitespace-nowrap" : ""
-      }`}
+      // CHANGE: Removed whitespace-nowrap here as well
+      className={`flex items-center gap-2 lg:gap-6 md:gap-6 mr-6 mb-2`}
     >
-      {/* Added whitespace-nowrap */}
       <div>
         <div className="mb-1 text-gray-400 text-[14px]">Review</div>
         <StarRating />
       </div>
-      <div className="border-l border-gray-300 pl-6">
+      <div className="border-l border-gray-300 pl-2 md:pl-4 lg:pl-6">
         <div className="mb-1 text-gray-400 text-[14px]">Days</div>
-        <div className="text-[16px] text-black-400">{days}</div>
+        <div className="text-[16px] text-black-400 whitespace-nowrap">
+          {days}
+        </div>
       </div>
-      <div className="border-l border-gray-300 pl-6">
+      <div className="border-l border-gray-300 pl-2 md:pl-4 lg:pl-6">
         <div className="mb-1 text-gray-400 text-[14px]">Location</div>
-        <div className="text-[16px] text-black-400">{location}</div>
+        <div className="text-[16px] text-black-400 whitespace-nowrap">
+          {location}
+        </div>
       </div>
     </div>
   </div>
@@ -95,15 +95,15 @@ const ActionButtons = () => {
         aria-label="Favorite"
         className="bg-yellow-400 p-3 rounded-md text-white hover:bg-yellow-500 transition cursor-pointer"
       >
-        <Image src="/icons/heart.png" alt="Favorite" width={24} height={24} />
+        <Image src="/icons/heart.webp" alt="Favorite" width={24} height={24} />
       </button>
 
       <button
         aria-label="Share"
         className="flex items-center gap-2 border border-yellow-400 rounded-md px-4 py-2 text-yellow-400 hover:bg-yellow-200 hover:text-white transition text-sm font-semibold cursor-pointer"
       >
-        <Image src="/icons/Vector.png" alt="Favorite" width={24} height={24} />
-        Share
+        <Image src="/icons/Vector.webp" alt="Share" width={30} height={30} />
+        <span className="hidden md:inline">Share</span>
       </button>
     </div>
   );
@@ -156,15 +156,12 @@ const IncludedExcluded = () => {
       setIsMobile(window.innerWidth < 768); // Define mobile as smaller than tablet breakpoint
     };
 
-    // Initial check
-    handleResize();
+    handleResize(); // Initial check
 
-    // Listen for resize events
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize); // Listen for resize events
 
-    // Cleanup listener
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleResize); // Cleanup listener
     };
   }, []);
 
@@ -189,7 +186,7 @@ const IncludedExcluded = () => {
                   className="flex items-center gap-2"
                 >
                   <Image
-                    src="/icons/right.png"
+                    src="/icons/right.webp"
                     alt="Included"
                     width={20}
                     height={20}
@@ -203,7 +200,7 @@ const IncludedExcluded = () => {
                   className="flex items-center gap-2"
                 >
                   <Image
-                    src="/icons/Wrong.png"
+                    src="/icons/Wrong.webp"
                     alt="Excluded"
                     width={20}
                     height={20}
@@ -219,7 +216,7 @@ const IncludedExcluded = () => {
               <div key={`item-${index}`} className="flex items-center gap-2">
                 {item.included === true && (
                   <Image
-                    src="/icons/right.png"
+                    src="/icons/right.webp"
                     alt="Included"
                     width={20}
                     height={20}
@@ -227,7 +224,7 @@ const IncludedExcluded = () => {
                 )}
                 {item.included === false && (
                   <Image
-                    src="/icons/Wrong.png"
+                    src="/icons/Wrong.webp"
                     alt="Excluded"
                     width={20}
                     height={20}
@@ -243,6 +240,8 @@ const IncludedExcluded = () => {
 };
 
 const CalendarComponent = () => {
+    const router = useRouter(); // Initialize the router
+
   const days = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
   const dates = [
     "",
@@ -280,6 +279,10 @@ const CalendarComponent = () => {
     "",
     "",
   ];
+
+  const handleBookNow = () => {
+    router.push("/review-package"); // Programmatically navigate to the /review-package route
+  };
 
   return (
     <div className="bg-white rounded-xl p-6 flex flex-col gap-6">
@@ -354,7 +357,10 @@ const CalendarComponent = () => {
           <span className="text-base">Medical Insurance</span>
         </div>
       </div>
-      <button className="bg-[#2F4832] mx-auto text-white font-semibold rounded-xl w-[300px] h-[56px] mt-6 hover:bg-[#244026] cursor-pointer transition-colors block">
+       <button
+        className="bg-[#2F4832] mx-auto text-white font-semibold rounded-xl w-[300px] h-[56px] mt-6 hover:bg-[#244026] cursor-pointer transition-colors block"
+        onClick={handleBookNow} // Add the onClick handler
+      >
         Book Now
       </button>
     </div>
@@ -383,15 +389,12 @@ const TripDetailsPage = () => {
       setIsMobile(window.innerWidth < 1024); // Adjusted breakpoint here as well
     };
 
-    // Initial check
-    handleResize();
+    handleResize(); // Initial check
 
-    // Listen for resize events
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize); // Listen for resize events
 
-    // Cleanup listener
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleResize); // Cleanup listener
     };
   }, []);
 
@@ -413,13 +416,10 @@ const TripDetailsPage = () => {
             <div className="ml-40">
               <ActionButtons />
             </div>
-            
           </div>
-
           <OverviewNavigation />
-
           <TripOverview title="Trip Overview" description={overviewText} />
-          <hr className="border-t border-gray-200 my-8" /> {/* Added hr line here */}
+          <hr className="border-t border-gray-200 my-8" />{" "}
           {isMobile && (
             <div
               className="rounded-xl shadow-[0_0_40px_10px_rgba(0,0,0,0.3)] border border-gray-200 mb-8
@@ -437,7 +437,6 @@ const TripDetailsPage = () => {
           )}
           <IncludedExcluded />
           <TripOverview title="Trip Plan" description={planText} />
-
           <img
             alt="Glens of Antrim landscape with a tall stone cross in the foreground, green hills and trees under a partly cloudy sky"
             className="mt-8 rounded-lg w-full max-w-[750px] max-h-[306px] object-cover mx-auto"

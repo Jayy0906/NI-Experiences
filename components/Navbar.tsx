@@ -4,11 +4,11 @@ import Link from "next/link";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "Destinations", href: "#" },
-  { label: "Experiences", href: "#" },
-  { label: "🔥 Hot Deals", href: "#" },
-  { label: "About Us", href: "#" },
-  { label: "Contact Us", href: "#" },
+  { label: "Destinations", href: "/destinations" },
+  { label: "Experiences", href: "/experiences" },
+  { label: "🔥 Hot Deals", href: "/hot-deals" },
+  { label: "About Us", href: "/about-us" },
+  { label: "Contact Us", href: "/contact-us" },
 ];
 
 const NavigationLinks: React.FC<{ className?: string }> = ({ className }) => {
@@ -82,7 +82,7 @@ const NavigationLinks: React.FC<{ className?: string }> = ({ className }) => {
             onMouseLeave={handleNestedMouseLeave}
           >
             <Link
-              href="best-holiday-places"
+              href="/best-holiday-places"
               className="flex-1 text-center block px-5 py-3 text-black hover:bg-yellow-100 rounded-t-xl transition-colors"
               onClick={() => {
                 setDropdownOpen(false);
@@ -122,11 +122,27 @@ const NavigationLinks: React.FC<{ className?: string }> = ({ className }) => {
           </div>
           {/* Most Visited Places */}
           <Link
-            href="most-visited-places"
-            className="block px-5 py-3 text-black hover:bg-yellow-100 rounded-b-xl transition-colors"
+            href="/most-visited-places"
+            className="block px-5 py-3 text-black hover:bg-yellow-100 transition-colors"
             onClick={() => setDropdownOpen(false)}
           >
             Most Visited Places
+          </Link>
+          {/* My Account */}
+          <Link
+            href="/my-account"
+            className="block px-5 py-3 text-black hover:bg-yellow-100 transition-colors"
+            onClick={() => setDropdownOpen(false)}
+          >
+            My Account
+          </Link>
+          {/* My Order */}
+          <Link
+            href="/my-orders"
+            className="block px-5 py-3 text-black hover:bg-yellow-100 rounded-b-xl transition-colors"
+            onClick={() => setDropdownOpen(false)}
+          >
+            My Orders
           </Link>
         </div>
       </div>
@@ -146,12 +162,23 @@ const NavigationLinks: React.FC<{ className?: string }> = ({ className }) => {
 
 const AuthButtons: React.FC<{ className?: string }> = ({ className }) => (
   <div className={`flex gap-4 items-center ${className || ""}`}>
-    <button className="text-base leading-7 text-yellow-400 rounded-xl border border-yellow-400 h-[44px] w-[90px] hover:bg-yellow-400 hover:text-white transition-colors cursor-pointer">
+    {/* Signup Link */}
+    <Link
+      href="/signup" // Set the destination for the signup link
+      className="text-base leading-7 text-yellow-400 rounded-xl border border-yellow-400 h-[44px] w-[90px] hover:bg-yellow-400 hover:text-white transition-colors cursor-pointer
+                 flex items-center justify-center" // Added flex classes to center text within the Link
+    >
       Signup
-    </button>
-    <button className="text-base leading-7 text-white bg-yellow-400 rounded-xl h-[44px] w-[90px] hover:bg-yellow-500 transition-colors cursor-pointer  ">
+    </Link>
+
+    {/* Login Link */}
+    <Link
+      href="/login" // Set the destination for the login link
+      className="text-base leading-7 text-white bg-yellow-400 rounded-xl h-[44px] w-[90px] hover:bg-yellow-500 transition-colors cursor-pointer
+                 flex items-center justify-center" // Added flex classes to center text within the Link
+    >
       Login
-    </button>
+    </Link>
   </div>
 );
 
@@ -267,11 +294,27 @@ const MobileMenu: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
               </div>
               {/* Most Visited Places */}
               <Link
-                href="most-visited-places"
+                href="/most-visited-places"
                 className="block py-2 pl-2 text-base leading-7 text-black hover:text-yellow-400 transition-colors"
                 onClick={onClose}
               >
                 Most Visited Places
+              </Link>
+              {/* My Account */}
+              <Link
+                href="/my-account"
+                className="block py-2 pl-2 text-base leading-7 text-black hover:text-yellow-400 transition-colors"
+                onClick={onClose}
+              >
+                My Account
+              </Link>
+              {/* My Order */}
+              <Link
+                href="/my-orders"
+                className="block py-2 pl-2 text-base leading-7 text-black hover:text-yellow-400 transition-colors"
+                onClick={onClose}
+              >
+                My Orders
               </Link>
             </div>
           </div>

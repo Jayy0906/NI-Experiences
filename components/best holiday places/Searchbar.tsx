@@ -2,11 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import fiveStars from "/icons/stars/5-star.png";
-import fourStars from "/icons/stars/4-star.png";
-import threeStars from "/icons/stars/3-star.png";
-import twoStars from "/icons/stars/2-star.png";
-import oneStar from "/icons/stars/1-star.png";
 
 // Divider component (no changes needed)
 const Divider: React.FC = () => (
@@ -180,7 +175,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   const [searchText, setSearchText] = useState("");
 
   return (
-    <div className="flex flex-col justify-center px-5 py-3 w-95 -mt-8 lg:-mt-0 md:-mt-6 md:w-full lg:w-full text-base leading-loose rounded-xl border border-solid border-gray-200 min-h-14 text-zinc-400 lg:ml-0 ">
+    <div className="flex flex-col justify-center px-5 py-3 w-95 -mt-8 lg:-mt-0 md:-mt-6 ml-3.5 md:w-full lg:w-full text-base leading-loose rounded-xl border border-solid border-gray-200 min-h-14 text-zinc-400 lg:ml-0 ">
       <div className="flex gap-2.5 items-center w-full ">
         {/* Search SVG */}
         <svg
@@ -250,12 +245,10 @@ const PriceSlider: React.FC = () => {
 // SideFilter component (no changes needed)
 const SideFilter: React.FC = () => (
   <aside className="max-w-[244px] w-full md:w-[244px] lg:w-[244px]">
-    {" "}
     {/* Make width responsive */}
     <SearchInput />
     <FilterSection title="Experiences">
       <nav className="text-base leading-loose">
-        {" "}
         {/* Remove hiding classes */}
         <CategoryItem label="Cultural and Historical" />
         <CategoryItem label="Distillery" />

@@ -17,5 +17,3 @@ const Image: React.FC<ImageProps> = ({ alt = "Image", className }) => {
 };
 
 export default Image;
-
-

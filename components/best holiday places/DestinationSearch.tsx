@@ -17,7 +17,7 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
   title,
   price,
 }) => (
-  <article className="flex flex-col p-5 -mt-10 md:-mt-0 md:-mt-0 mb-8 md:mb-0 lg:mb-0 rounded-2xl min-w-[280px] w-[413px] border border-gray-200 bg-white max-md:flex-row max-md:items-center max-md:w-[360px] max-md:h-[100px] max-md:min-w-[360px] max-md:p-2 md:-ml-0 md:mr-6 lg:-ml-0 lg:mr-0 mr-9 -ml-61">
+  <article className="flex flex-col p-5 -mt-10 md:-mt-0 md:-mt-0 mb-8 md:mb-0 lg:mb-0 rounded-2xl w-[380px] lg:w-[413px] md:w-[423px] border border-gray-200 bg-white max-md:flex-row max-md:items-center max-md:p-2 md:-ml-0 md:mr-6 lg:-ml-0 lg:mr-0 mr-9 -ml-61">
     {/* Mobile horizontal layout */}
     <div className="hidden max-md:flex w-[90px] h-[80px] rounded-lg overflow-hidden flex-shrink-0">
       <Image
@@ -32,7 +32,7 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
     <div className="hidden max-md:flex flex-col justify-between flex-1 h-full pl-3">
       <h2 className="text-base font-bold text-neutral-900 truncate">{title}</h2>
       <div className="flex items-center gap-1">
-        <Image src="/icons/stars.png" alt="Star" width={100} height={20} />
+        <Image src="/icons/stars.webp" alt="Star" width={100} height={20} />
         <p className="text-xs text-black-500">{reviews}</p>
       </div>
       <div className="flex items-center justify-between mt-1 w-full">
@@ -58,7 +58,7 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
       </div>
 
       <div className="flex gap-2.5 items-center self-start mt-4 text-base leading-loose text-neutral-900 max-md:hidden">
-        <Image src="/icons/stars.png" alt="Star" width={100} height={20} />
+        <Image src="/icons/stars.webp" alt="Star" width={100} height={20} />
         <p className="self-stretch my-auto text-neutral-900">{reviews}</p>
       </div>
 
@@ -123,7 +123,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
   };
 
   return (
-    <header className="flex flex-wrap gap-8 items-center w-full max-md:max-w-full md:-mt-6 lg:-mt-0 mt-12 -ml-61 md:-ml-6 md:-ml-0 lg:-ml-0 ">
+    <header className="flex flex-wrap gap-8 items-center w-full max-md:max-w-full md:-mt-6 lg:-mt-0 mt-12 -ml-57 md:-ml-6 md:-ml-0 lg:-ml-0 ">
       <div
         className={
           isMobile
@@ -134,7 +134,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
         <div className="flex gap-5 items-center self-stretch my-auto ">
           <button className="flex gap-2.5 justify-center items-center self-stretch px-3.5 my-auto bg-yellow-400 rounded-xl h-12 min-h-12 w-12 ">
             <Image
-              src="/icons/Button.png"
+              src="/icons/Button.webp"
               alt="Filter"
               className="object-contain self-stretch my-auto w-6 h-6"
               width={24}
@@ -159,7 +159,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
       {/* Sort dropdown */}
       <div className="relative">
         <button
-          className="flex flex-col justify-center self-stretch ml-70 -mt-20 md:-mt-20 md:-mr-10 lg:-mr-0 lg:-mt-0 lg:mr-2 px-0.5 md:px-2.5 lg:px-2.5 py-3 my-auto text-sm md:text-base lg:text-base leading-loose rounded-xl border border-solid border-gray-200 min-h-12 text-neutral-900"
+          className="flex flex-col justify-center self-stretch ml-70 -mt-20 md:-mt-20 md:-mr-10 lg:-mr-0 lg:-mt-0 lg:mr-2 px-3 py-3 md:px-2.5 lg:px-2.5 my-auto text-base md:text-base lg:text-base leading-loose rounded-xl border border-solid border-gray-200 min-h-[48px] text-neutral-900"
           onClick={() => setIsSortExpanded(!isSortExpanded)}
         >
           <div className="flex lg:gap-1.5 md:gap-1 gap-1 items-center">
@@ -316,7 +316,7 @@ const DestinationSearch: React.FC = () => {
         destinationsCount={searchResults.length}
         onSort={handleSort}
       />
-      <div className="flex max-w-[1200px] flex-wrap gap-5 items-start mt-8 md:mt-0 lg:mt-10">
+      <div className="flex max-w-[1200px] flex-wrap gap-5 items-start mt-8 md:mt-0 lg:mt-10 ml-3.5 md:ml-0 lg:ml-0">
         {searchResults.map((card, index) => (
           <DestinationCard key={index} {...card} />
         ))}
